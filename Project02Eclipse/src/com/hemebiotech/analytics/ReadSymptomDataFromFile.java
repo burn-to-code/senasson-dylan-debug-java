@@ -23,8 +23,12 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 	
 	@Override
-	public List<String> GetSymptoms() {
+	public List<String> getSymptoms() throws IOException {
 		ArrayList<String> result = new ArrayList<String>();
+		
+	    if (filepath == null || filepath.trim().isEmpty()) {
+	        throw new IllegalArgumentException("Le chemin du fichier ne peut pas être null ou vide.");
+	    }
 		
 		if (filepath != null) {
 			try {
@@ -37,6 +41,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				}
 				reader.close();
 			} catch (IOException e) {
+				System.err.println("une erreur s'est produite : " + e.getMessage());
 				e.printStackTrace();
 			}
 		}
