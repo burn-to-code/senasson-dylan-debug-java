@@ -51,5 +51,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	        System.err.println("Erreur lors de l'écriture du fichier "+ fichier + " : " + e.getMessage());
 	        e.printStackTrace();
 	    }
+		
+		System.out.println("OPERATION REUSSI : Le Fichier " + fichier +" de symptoms triés et comptés a été crée avec succès ! ");
 	}	
 }

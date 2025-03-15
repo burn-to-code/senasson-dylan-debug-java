@@ -12,8 +12,8 @@ import java.util.TreeMap;
  */
 
 public class AnalyticsCounter {
-	private ISymptomWriter writer;
 	private ISymptomReader reader;
+	private ISymptomWriter writer;
 	
     /**
      * CONSTRUCTEUR avec reader et after
@@ -22,9 +22,9 @@ public class AnalyticsCounter {
      * @param writer une instance de ISymptomWriter
      */
 
-	public AnalyticsCounter(ISymptomWriter writer, ISymptomReader reader) {
-		this.writer = writer;
+	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
 		this.reader = reader;
+		this.writer = writer;
 	}
 	
 	
@@ -35,7 +35,7 @@ public class AnalyticsCounter {
 	 * @return retourne la liste des symptomes avec les doublons en utilisant l'objet readsymptomDataFromFIle
 	 * et la méthode getSymtoms prédéfini au début du cours
 	 */
-	public List<String> getSymptoms() throws IOException {
+	public List<String> getSymptoms() {
 		return reader.getSymptoms();
 	}
 	
@@ -93,11 +93,5 @@ public class AnalyticsCounter {
 	public void writeSymptoms(Map<String, Integer> symptoms) { 
 		writer.writeSymptoms(symptoms);
 	}
-	
-	
-	// DECLARATION DU MAIN 
-	
-	public static void main(String args[]) throws Exception {
-		// ce qu'il reste à coder
-	}
+
 }
