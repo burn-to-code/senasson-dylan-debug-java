@@ -11,9 +11,11 @@ import java.util.List;
  * 
  */
 public interface ISymptomReader {
-	/**
-	 * If no data is available, return an empty List
-	 * 
+    /**
+     * Récupere une liste brute de symptôms à partir d'une source de données.
+     * Cette liste peut contenir des douccblons, qui devront être gérés plus tard dans le processus.
+     * 
+     * Si aucune donnée n'est disponible, la méthode renverra une liste vide.
 	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
 	 */
 	List<String> getSymptoms();

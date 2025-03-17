@@ -17,7 +17,8 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	/**
 	 * Constructeur prenant en paramètre le nom du fichier de sortie.
 	 * 
-	 * @param fichier Nom du fichier où enregistrer les symptômes.
+	 * @param fileName Nom du fichier où enregistrer les symptômes. Ne peut être null ou vide.
+     * @throws IllegalArgumentException Si le nom du fichier est null ou vide.
 	 */
 	public WriteSymptomDataToFile(final String fichier) {
 	    if (fichier == null || fichier.trim().isEmpty()) {
@@ -38,7 +39,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	public void writeSymptoms(Map<String, Integer> symptoms) {
 		
 	    if (symptoms == null || symptoms.isEmpty()) {
-	        System.out.println("Aucune donnée à enregistrer. Le fichier ne sera pas créé.");
+	        System.err.println("Aucune donnée à enregistrer. Le fichier " + fichier + " ne sera pas créé.");
 	        return; // On ne crée pas le fichier si la liste est vide
 	    }
 		
@@ -52,6 +53,6 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	        e.printStackTrace();
 	    }
 		
-		System.out.println("OPERATION REUSSI : Le Fichier " + fichier +" de symptoms triés et comptés a été crée avec succès ! ");
+		System.out.println("OPERATION REUSSI : Le Fichier " + fichier +" a été crée génèré avec succès ! ");
 	}	
 }

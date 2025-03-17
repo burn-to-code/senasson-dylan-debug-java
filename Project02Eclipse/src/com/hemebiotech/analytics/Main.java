@@ -18,7 +18,5 @@ public class Main {
 		Map<String, Integer> sortedSymptoms = counter.sortSymptoms(symptomsCount);
 		
 		counter.writeSymptoms(sortedSymptoms);
-
 	}
-
 }

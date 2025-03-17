@@ -13,7 +13,7 @@ public interface ISymptomWriter {
     /**
      * Écrit les symptômes et leur fréquence dans un fichier.
      * Cette méthode utilise une structure try-with-resources pour garantir que le fichier est correctement 
-     * ouvert et fermé, même en cas d'erreur.
+     * ouvert et fermé, même en cas d'erreur. Le fichier est supposé être au format texte.
      *
      * @param symptoms La Map contenant les symptômes en tant que clés et leur fréquence en tant que valeurs.
      * @throws IOException Si une erreur d'entrée/sortie se produit lors de l'écriture dans le fichier.

@@ -1,13 +1,13 @@
 package com.hemebiotech.analytics;
 
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * La classe main qui vas utiliser les méthodes pour lire un fichier, compter les symptomps, trier les 
+ * La classe main qui vas utiliser les méthodes pour lire un fichier, compter les symptoms, trier les 
  * symtomps dans l'ordre alphabétique puis les compiler dans un nouveau fichier de sortie.
  */
 
@@ -32,7 +32,7 @@ public class AnalyticsCounter {
 	
 	/**
 	 * 
-	 * @return retourne la liste des symptomes avec les doublons en utilisant l'objet readsymptomDataFromFIle
+	 * @return retourne la liste des symptoms avec les doublons en utilisant l'objet readsymptomDataFromFile
 	 * et la méthode getSymtoms prédéfini au début du cours
 	 */
 	public List<String> getSymptoms() {
@@ -56,7 +56,7 @@ public class AnalyticsCounter {
 		Map<String, Integer> symptomsCount = new HashMap<>();
 		
 		for (String symptom : symptoms) {
-			symptomsCount.put(symptom, symptomsCount.getOrDefault(symptom, 0) +1);
+			symptomsCount.compute(symptom, (key, val) -> (val == null) ? 1 : val + 1);
 		}
 		
 		return symptomsCount;
@@ -75,20 +75,19 @@ public class AnalyticsCounter {
 	 * @return Une nouvelle Map triée par ordre alphabétique des symptômes.
 	 */
 	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
-		Map<String, Integer> mapTriee = new TreeMap<>(symptoms);
-		return mapTriee;
+		Map<String, Integer> sortedSymptoms = new TreeMap<>(symptoms);
+		return sortedSymptoms;
 	}
 	
 	
 	/**
 	 * Appelle la méthode writeSymptoms de l'objet ISymptomWriter(writesymtomsdatatofile pour nous) pour enregistrer 
-	 * les symptômes dans un fichier.
+	 * les symptômes dsans un fichier.
 	 * 
 	 * Cette méthode prend la Map des symptômes et utilise l'instance de ISymptomWriter 
 	 * (fournie lors de la création de l'objet) pour écrire les symptômes dans un fichier.
 	 * 
 	 * @param symptoms La Map contenant les symptômes et leur nombre d'occurrences.
-	 * @throws IOException Si un problème survient lors de l'écriture dans le fichier.
 	 */
 	public void writeSymptoms(Map<String, Integer> symptoms) { 
 		writer.writeSymptoms(symptoms);
