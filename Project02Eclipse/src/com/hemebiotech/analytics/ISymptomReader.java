@@ -8,7 +8,7 @@ import java.util.List;
  * that may contain many duplications
  * 
  * The implementation does not need to order the list
- * 
+ * @FunctionnalInterface
  */
 public interface ISymptomReader {
     /**

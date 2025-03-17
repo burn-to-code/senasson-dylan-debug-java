@@ -7,6 +7,8 @@ import java.util.Map;
  * Interface représentant un écrivain de symptômes.
  * Cette interface définit une méthode pour écrire des symptômes et leur nombre dans un fichier a partir 
  * d'une Map.
+ * 
+ * @FunctionnalInterface
  */
 public interface ISymptomWriter {
 	
