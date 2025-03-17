@@ -16,7 +16,7 @@ public interface ISymptomReader {
      * Cette liste peut contenir des douccblons, qui devront être gérés plus tard dans le processus.
      * 
      * Si aucune donnée n'est disponible, la méthode renverra une liste vide.
-	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
+	 * @return une liste brute de symptôms à partir d'une source de données. Les doublons sont possibles
 	 */
 	List<String> getSymptoms();
 }

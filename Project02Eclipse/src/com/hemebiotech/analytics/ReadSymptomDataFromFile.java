@@ -24,9 +24,11 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 	
 	/**
-	 * utilise un try-with-ressources  pour ouvrir et fermer le fichier automatiquement
+	 * Utilize one try-with-ressources for open and close the file automatically 
 	 * 
-	 * @return retourne une list string de chaque ligne du fichier.txt
+	 * @return return a list string de chaque ligne du fichier.txt no accent and no Uppercase
+	 * et il n'ajoute pas de ligne vide à la liste
+	 * @throws IllegalArgumentException Si le nom du fichier est null ou vide.
 	 */
 	@Override
 	public List<String> getSymptoms() {
@@ -37,7 +39,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	    }
 	    
 		
-		try (BufferedReader reader = new BufferedReader (new FileReader(filepath))){
+		try (BufferedReader reader = new BufferedReader (new FileReader(filepath))) {
 			String line = reader.readLine();
 			
 			if (line == null) {
@@ -46,7 +48,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 			}
 			
 			while (line != null) {
-				result.add(line);
+				line = line.trim(); 
+				if (!line.isEmpty()) { 
+					result.add(RemoveAccents.removeAccents(line.toLowerCase()));
+				} 
 				line = reader.readLine();
 			}
 			

@@ -41,12 +41,11 @@ public class AnalyticsCounter {
 	
 	
 	/**
-	 * Cette méthode prend en entrée une liste de symptômes et retourne une Map qui associe à chaque symptôme 
+	 * prend en entrée une liste de symptômes et retourne une Map qui associe à chaque symptôme 
 	 * le nombre de fois où il apparaît dans la liste. Si un symptôme apparaît plusieurs fois, la valeur correspondante 
-	 * dans la **Map** sera incrémentée à chaque apparition du symptôme dans la liste.
+	 * dans la Map sera incrémentée à chaque apparition du symptôme dans la liste.
 	 * 
-	 * Elle utilise la méthode getOrDefault() pour vérifier si un symptôme a déjà été rencontré. Si ce n'est pas le 
-	 * cas, elle initialise son compteur à 0 avant de l'incrémenter. sinon elle prend la valeur acutel et lui rajoute 1
+	 * Elle utilise la méthode compute
 	 * 
 	 * @param symptoms Une liste de chaînes de caractères représentant les symptômes à compter.
 	 * @return Une Map où chaque clé est un symptôme (chaîne de caractères) et chaque valeur est le nombre 

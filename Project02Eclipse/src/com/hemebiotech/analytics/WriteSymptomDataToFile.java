@@ -10,14 +10,13 @@ import java.util.Map;
  */
 public class WriteSymptomDataToFile implements ISymptomWriter {
 	
-	/** Nom du fichier de sortie */
 	private String fichier;
 	
 	
 	/**
 	 * Constructeur prenant en paramètre le nom du fichier de sortie.
 	 * 
-	 * @param fileName Nom du fichier où enregistrer les symptômes. Ne peut être null ou vide.
+	 * @param fichier Nom du fichier où enregistrer les symptômes. Ne peut être null ou vide.
      * @throws IllegalArgumentException Si le nom du fichier est null ou vide.
 	 */
 	public WriteSymptomDataToFile(final String fichier) {
@@ -34,6 +33,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 * 
 	 * @return retourne un nouveau fichier de la variable fichier avec les différentes clés et valeur d'une
 	 * 			Map en paramètre
+	 * @param Map<String, Integer> symptoms est une map d'element clé/valeur triès ou non 
 	 */
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
@@ -45,7 +45,9 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 		
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
 			for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
-				writer.write(entry.getKey() + " : " + entry.getValue());	
+				String symptom = entry.getKey().toLowerCase();
+				symptom = symptom.substring(0, 1).toUpperCase() + symptom.substring(1);
+				writer.write(symptom + " : " + entry.getValue());	
 				writer.newLine();
 			} 
 		} catch (IOException e) {
@@ -53,6 +55,6 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	        e.printStackTrace();
 	    }
 		
-		System.out.println("OPERATION REUSSI : Le Fichier " + fichier +" a été crée génèré avec succès ! ");
+		System.out.println("OPERATION REUSSI : Le Fichier " + fichier +" a été crée et génèré avec succès ! ");
 	}	
 }

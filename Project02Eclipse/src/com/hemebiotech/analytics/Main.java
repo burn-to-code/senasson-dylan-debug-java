@@ -3,8 +3,17 @@ package com.hemebiotech.analytics;
 import java.util.List;
 import java.util.Map;
 
-public class Main {
+/**
+ * @author Dylan Senasson
+ * @version 21.0.6
+ */
 
+public class Main {
+	
+	
+	/**
+	 * @param String[] args no use here
+	 */
 	public static void main(String[] args) {
 		ISymptomReader reader = new ReadSymptomDataFromFile("symptoms.txt");
 		ISymptomWriter writer = new WriteSymptomDataToFile("result.txt");
