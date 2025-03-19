@@ -7,33 +7,28 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * La classe main qui vas utiliser les méthodes pour lire un fichier, compter les symptoms, trier les 
- * symtomps dans l'ordre alphabétique puis les compiler dans un nouveau fichier de sortie.
+ * The AnalyticsCounter class acts as the conductor between the different elements,
+ * with the goal of centralizing only the methods of this class in our main.
  */
-
 public class AnalyticsCounter {
-	private ISymptomReader reader;
-	private ISymptomWriter writer;
-	
-    /**
-     * CONSTRUCTEUR avec reader et after
-     * 
-     * @param reader une instance de ISymptomReader
-     * @param writer une instance de ISymptomWriter
-     */
+	private final SymptomReader reader;
+	private final SymptomWriter writer;
 
-	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+	/**
+	 * Constructor
+	 *
+	 * @param reader in instance of SymptomReader
+	 * @param writer in instance of SymptomWriter
+	 */
+
+	public AnalyticsCounter(SymptomReader reader, SymptomWriter writer) {
 		this.reader = reader;
 		this.writer = writer;
 	}
 	
-	
-	// DECLARATION DE METHODES (GETSYMTOMS, COUNTSYMPTOMS, SORTSYMPTOMS, WRITESYMPTOMS)
-	
 	/**
-	 * 
-	 * @return retourne la liste des symptoms avec les doublons en utilisant l'objet readsymptomDataFromFile
-	 * et la méthode getSymtoms prédéfini au début du cours
+	 * @return Returns the list of symptoms with duplicates using the readSymptomDataFromFile object.
+	 * and the getSymptoms method predefined at the beginning.
 	 */
 	public List<String> getSymptoms() {
 		return reader.getSymptoms();
@@ -41,15 +36,11 @@ public class AnalyticsCounter {
 	
 	
 	/**
-	 * prend en entrée une liste de symptômes et retourne une Map qui associe à chaque symptôme 
-	 * le nombre de fois où il apparaît dans la liste. Si un symptôme apparaît plusieurs fois, la valeur correspondante 
-	 * dans la Map sera incrémentée à chaque apparition du symptôme dans la liste.
+	 * Takes a list of symptoms as input and returns a Map that associates each symptom with its occurrence.
+	 * She's using compute method.
 	 * 
-	 * Elle utilise la méthode compute
-	 * 
-	 * @param symptoms Une liste de chaînes de caractères représentant les symptômes à compter.
-	 * @return Une Map où chaque clé est un symptôme (chaîne de caractères) et chaque valeur est le nombre 
-	 *         d'occurrences de ce symptôme dans la liste (entier). ou une liste vide si get symptoms return une list vide.
+	 * @param symptoms A list of strings representing the symptoms to count.
+	 * @return A Map with symptoms and their occurrences, or an empty list if getSymptoms returns an empty list.
 	 */
 	public Map<String, Integer> countSymptoms(List<String> symptoms) {
 		Map<String, Integer> symptomsCount = new HashMap<>();
@@ -63,30 +54,21 @@ public class AnalyticsCounter {
 	
 	
 	/**
-	 * Trie les symptômes par ordre alphabétique des clés (les symptômes eux-mêmes).
+	 * Sorts the symptoms in alphabetical order of the keys, and thus their associated values (the symptoms themselves).
+	 * (Here, the symptoms are strictly strings).
 	 * 
-	 * Cette méthode crée un TreeMap à partir de la Map des symptômes fournie, 
-	 * ce qui permet de trier automatiquement les entrées par ordre alphabétique des clés 
-	 * (ici, les symptômes sont des chaînes de caractères). 
-	 * 
-	 * @param symptoms La Map contenant les symptômes et leur nombre d'occurrences.
-	 * @param mapTriee utilisé comme variable de sortie et interne a la fonction.
-	 * @return Une nouvelle Map triée par ordre alphabétique des symptômes.
+	 * @param symptoms The Map containing the symptoms and their number of occurrences.
+	 * @return A new Map sorted in alphabetical order of the symptoms.
 	 */
 	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
-		Map<String, Integer> sortedSymptoms = new TreeMap<>(symptoms);
-		return sortedSymptoms;
+        return new TreeMap<>(symptoms);
 	}
 	
 	
 	/**
-	 * Appelle la méthode writeSymptoms de l'objet ISymptomWriter(writesymtomsdatatofile pour nous) pour enregistrer 
-	 * les symptômes dsans un fichier.
+	 * Calls the writeSymptoms method of SymptomWriter to save the symptoms to a file.
 	 * 
-	 * Cette méthode prend la Map des symptômes et utilise l'instance de ISymptomWriter 
-	 * (fournie lors de la création de l'objet) pour écrire les symptômes dans un fichier.
-	 * 
-	 * @param symptoms La Map contenant les symptômes et leur nombre d'occurrences.
+	 * @param symptoms The Map containing the symptoms and their number of occurrences.
 	 */
 	public void writeSymptoms(Map<String, Integer> symptoms) { 
 		writer.writeSymptoms(symptoms);

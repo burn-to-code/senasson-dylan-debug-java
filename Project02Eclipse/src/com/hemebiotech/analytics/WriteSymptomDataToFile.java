@@ -6,55 +6,50 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Classe permettant d'écrire les symptômes et leurs occurrences dans un fichier.
+ * Class for writing symptoms and their occurrences to a file.
  */
-public class WriteSymptomDataToFile implements ISymptomWriter {
+public class WriteSymptomDataToFile implements SymptomWriter {
 	
-	private String fichier;
-	
+	private final String filepath;
+
 	
 	/**
-	 * Constructeur prenant en paramètre le nom du fichier de sortie.
+	 * Constructor taking the output file name as a parameter.
 	 * 
-	 * @param fichier Nom du fichier où enregistrer les symptômes. Ne peut être null ou vide.
-     * @throws IllegalArgumentException Si le nom du fichier est null ou vide.
+	 * @param filepath File name to save the symptoms. Cannot be null or empty.
+	 * @throws IllegalArgumentException if the file name is null or empty.
 	 */
-	public WriteSymptomDataToFile(final String fichier) {
-	    if (fichier == null || fichier.trim().isEmpty()) {
-	        throw new IllegalArgumentException("Le nom du fichier ne peut pas être vide ou null !");
+	public WriteSymptomDataToFile(final String filepath) {
+	    if (filepath == null || filepath.isBlank()) {
+	        throw new IllegalArgumentException("Pour WriteSymptomDataToFile, Le nom du fichier ne peut pas être vide ou null !");
 	    }
-		this.fichier = fichier;
+		this.filepath = filepath;
 	}
 	
 	/**
-	 * utilise un try-with-ressources  pour ouvrir et fermer le fichier automatiquement
-	 * 
-	 *
-	 * 
-	 * @return retourne un nouveau fichier de la variable fichier avec les différentes clés et valeur d'une
-	 * 			Map en paramètre
-	 * @param Map<String, Integer> symptoms est une map d'element clé/valeur triès ou non 
+	 * Use a try-with-resources to open and close the file automatically.
+	 * @param symptoms is a sorted or unsorted key/value element map.
 	 */
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
+		if (symptoms == null) {
+			throw new IllegalArgumentException("la liste des symptoms ne peut pas être null, le fichier ne sera pas crée.");
+		}
 		
-	    if (symptoms == null || symptoms.isEmpty()) {
-	        System.err.println("Aucune donnée à enregistrer. Le fichier " + fichier + " ne sera pas créé.");
-	        return; // On ne crée pas le fichier si la liste est vide
+	    if (symptoms.isEmpty()) {
+	        System.out.println("Aucune donnée à enregistrer. Le fichier " + filepath + " sera vide.");
 	    }
-		
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichier))) {
+
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
 			for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
-				String symptom = entry.getKey().toLowerCase();
-				symptom = symptom.substring(0, 1).toUpperCase() + symptom.substring(1);
-				writer.write(symptom + " : " + entry.getValue());	
+				writer.write(entry.getKey() + " : " + entry.getValue());	
 				writer.newLine();
 			} 
 		} catch (IOException e) {
-	        System.err.println("Erreur lors de l'écriture du fichier "+ fichier + " : " + e.getMessage());
+	        System.err.println("Erreur lors de l'écriture du fichier "+ filepath + " : " + e.getMessage());
 	        e.printStackTrace();
 	    }
 		
-		System.out.println("OPERATION REUSSI : Le Fichier " + fichier +" a été crée et génèré avec succès ! ");
+		System.out.println("OPERATION RÉUSSI : Le Fichier " + filepath +" a été crée et généré avec succès ! ");
 	}	
 }

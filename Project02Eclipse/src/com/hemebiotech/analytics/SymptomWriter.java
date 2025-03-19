@@ -3,18 +3,16 @@ package com.hemebiotech.analytics;
 import java.util.Map;
 
 /**
- * Interface représentant un écrivain de symptômes.
- * Cette interface définit une méthode pour écrire des symptômes et leur nombre dans un fichier à partir
- * d'une Map.
- * 
+ * Interface representing a symptom writer.
+ * This interface defines a method to write symptoms and their count to any file from a map.
+ * If the map passed as a parameter is null, the file is not created and an IllegalArgumentException is thrown.
  * @FunctionnalInterface
  */
 public interface SymptomWriter {
 
     /**
-     * Écrit les symptômes et leur fréquence dans un fichier.
-     * Cette méthode utilise une structure try with resources pour garantir que le fichier est correctement
-     * ouvert et fermé, même en cas d'erreur. Le fichier est supposé être au format texte.
+     * Write the symptoms and their frequency to a file.
+     * This method uses a try-with-resources structure to ensure that the file is properly closed.
      * @param symptoms La Map contenant les symptômes en tant que clés et leur fréquence en tant que valeurs.
      * */
     void writeSymptoms(Map<String, Integer> symptoms);

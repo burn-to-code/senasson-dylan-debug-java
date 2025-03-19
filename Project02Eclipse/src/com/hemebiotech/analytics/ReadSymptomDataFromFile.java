@@ -10,53 +10,47 @@ import java.util.List;
  * Simple brute force implementation
  *
  */
-public class ReadSymptomDataFromFile implements ISymptomReader {
+public class ReadSymptomDataFromFile implements SymptomReader {
 
-	private String filepath;
+	private final String filepath;
 	
 	/**
-	 * Constructeur
-	 * 
+	 * Constructor
+	 *
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
+	 * @throws IllegalArgumentException if the file name is null or empty.
 	 */
 	public ReadSymptomDataFromFile (String filepath) {
+	    if (filepath == null || filepath.isBlank()) {
+	        throw new IllegalArgumentException("Pour ReadSymptoms, Le chemin du fichier ne peut pas être null ou vide.");
+	    }
 		this.filepath = filepath;
 	}
 	
 	/**
-	 * Utilize one try-with-ressources for open and close the file automatically 
+	 * Utilize one try-with-ressources for open and close the file automatically
 	 * 
-	 * @return return a list string de chaque ligne du fichier.txt no accent and no Uppercase
-	 * et il n'ajoute pas de ligne vide à la liste
-	 * @throws IllegalArgumentException Si le nom du fichier est null ou vide.
+	 * @return Return a list of strings from each line of the file.txt, no accents and no uppercase.
 	 */
 	@Override
 	public List<String> getSymptoms() {
-		ArrayList<String> result = new ArrayList<>();
-		
-	    if (filepath == null || filepath.trim().isEmpty()) {
-	        throw new IllegalArgumentException("Le chemin du fichier ne peut pas être null ou vide.");
-	    }
+		List<String> result = new ArrayList<>();
 	    
 		
 		try (BufferedReader reader = new BufferedReader (new FileReader(filepath))) {
 			String line = reader.readLine();
 			
 			if (line == null) {
-				System.err.println("Le fichier " + filepath + " est vide ");
-	            return result;  
+				System.out.println("Le fichier " + filepath + " est vide, une liste vide sera retournée !");
 			}
 			
 			while (line != null) {
-				line = line.trim(); 
-				if (!line.isEmpty()) { 
-					result.add(RemoveAccents.removeAccents(line.toLowerCase()));
-				} 
+				result.add(line);
 				line = reader.readLine();
 			}
 			
 		} catch (IOException e) {
-			System.err.println("une erreur s'est produite : " + e.getMessage());
+			System.err.println("Impossible de lire le fichier " + filepath + " : " + e.getMessage());
 			e.printStackTrace();
 		}
 	

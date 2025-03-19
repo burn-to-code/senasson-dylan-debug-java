@@ -6,19 +6,21 @@ import java.util.Map;
 /**
  * @author Dylan Senasson
  * @version 21.0.6
+ *
+ * Se préparer pour la soutenance.
  */
 
 public class Main {
 	
 	
 	/**
-	 * @param String[] args no use here
+	 * @param args args no use here
 	 */
 	public static void main(String[] args) {
-		ISymptomReader reader = new ReadSymptomDataFromFile("symptoms.txt");
-		ISymptomWriter writer = new WriteSymptomDataToFile("result.out");
+		final SymptomReader reader = new ReadSymptomDataFromFile("symptoms.txt");
+		final SymptomWriter writer = new WriteSymptomDataToFile("result.out");
 		
-		AnalyticsCounter counter = new AnalyticsCounter(reader, writer);
+		final AnalyticsCounter counter = new AnalyticsCounter(reader, writer);
 	
 		List<String> symptoms = counter.getSymptoms();
 		

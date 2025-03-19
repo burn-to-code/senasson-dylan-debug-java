@@ -11,10 +11,7 @@ import java.util.List;
  */
 public interface SymptomReader {
     /**
-     * Récupère une liste brute de symptôms à partir d'une source de données.
-     * Cette liste peut contenir des doublons, qui devront être gérés plus tard dans le processus.
-     * Si aucune donnée n'est disponible, la méthode renverra une liste vide.
-	 * @return une liste brute de symptôms à partir d'une source de données. Les doublons sont acceptés.
+	 * @return A raw list of symptoms from a data source. Duplicates are allowed.
 	 */
 	List<String> getSymptoms();
 }
