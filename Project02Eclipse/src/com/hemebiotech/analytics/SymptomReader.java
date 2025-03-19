@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface SymptomReader {
     /**
-	 * @return A raw list of symptoms from a data source. Duplicates are allowed.
-	 */
-	List<String> getSymptoms();
+     * @return A raw list of symptoms from a data source. Duplicates are allowed.
+     */
+    List<String> getSymptoms();
 }
