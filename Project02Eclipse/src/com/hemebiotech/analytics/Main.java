@@ -11,8 +11,7 @@ import java.util.Map;
  */
 
 public class Main {
-	
-	
+
 	/**
 	 * @param args args no use here
 	 */

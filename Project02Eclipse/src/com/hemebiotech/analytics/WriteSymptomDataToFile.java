@@ -11,7 +11,6 @@ import java.util.Map;
 public class WriteSymptomDataToFile implements SymptomWriter {
 	
 	private final String filepath;
-
 	
 	/**
 	 * Constructor taking the output file name as a parameter.

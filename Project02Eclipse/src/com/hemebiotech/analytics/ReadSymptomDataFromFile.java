@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * Simple brute force implementation
- *
  */
 public class ReadSymptomDataFromFile implements SymptomReader {
 
@@ -35,7 +34,6 @@ public class ReadSymptomDataFromFile implements SymptomReader {
 	@Override
 	public List<String> getSymptoms() {
 		List<String> result = new ArrayList<>();
-	    
 		
 		try (BufferedReader reader = new BufferedReader (new FileReader(filepath))) {
 			String line = reader.readLine();
@@ -53,8 +51,7 @@ public class ReadSymptomDataFromFile implements SymptomReader {
 			System.err.println("Impossible de lire le fichier " + filepath + " : " + e.getMessage());
 			e.printStackTrace();
 		}
-	
-		
+
 		return result;
 	}
 
