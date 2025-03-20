@@ -6,8 +6,6 @@ import java.util.Map;
 /**
  * @author Dylan Senasson
  * @version 21.0.6
- *
- * Se préparer pour la soutenance.
  */
 
 public class Main {
@@ -21,11 +19,11 @@ public class Main {
 		
 		final AnalyticsCounter counter = new AnalyticsCounter(reader, writer);
 	
-		List<String> symptoms = counter.getSymptoms();
+		final List<String> symptoms = counter.getSymptoms();
 		
-		Map<String, Integer> symptomsCount = counter.countSymptoms(symptoms);
+		final Map<String, Integer> symptomsCount = counter.countSymptoms(symptoms);
 		
-		Map<String, Integer> sortedSymptoms = counter.sortSymptoms(symptomsCount);
+		final Map<String, Integer> sortedSymptoms = counter.sortSymptoms(symptomsCount);
 		
 		counter.writeSymptoms(sortedSymptoms);
 	}

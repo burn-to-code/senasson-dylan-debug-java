@@ -41,14 +41,14 @@ public class WriteSymptomDataToFile implements SymptomWriter {
 
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
 			for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
-				writer.write(entry.getKey() + " : " + entry.getValue());	
+				writer.write(entry.getKey() + " : " + entry.getValue());
 				writer.newLine();
-			} 
+			}
 		} catch (IOException e) {
 	        System.err.println("Erreur lors de l'écriture du fichier "+ filepath + " : " + e.getMessage());
 	        e.printStackTrace();
 	    }
 		
 		System.out.println("OPERATION RÉUSSI : Le Fichier " + filepath +" a été crée et généré avec succès ! ");
-	}	
+	}
 }

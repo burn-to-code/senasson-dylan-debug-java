@@ -56,21 +56,21 @@ public class AnalyticsCounter {
 	/**
 	 * Sorts the symptoms in alphabetical order of the keys, and thus their associated values (the symptoms themselves).
 	 * (Here, the symptoms are strictly strings).
-	 * 
+	 *
 	 * @param symptoms The Map containing the symptoms and their number of occurrences.
 	 * @return A new Map sorted in alphabetical order of the symptoms.
 	 */
 	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
         return new TreeMap<>(symptoms);
 	}
-	
-	
+
+
 	/**
 	 * Calls the writeSymptoms method of SymptomWriter to save the symptoms to a file.
-	 * 
+	 *
 	 * @param symptoms The Map containing the symptoms and their number of occurrences.
 	 */
-	public void writeSymptoms(Map<String, Integer> symptoms) { 
+	public void writeSymptoms(Map<String, Integer> symptoms) {
 		writer.writeSymptoms(symptoms);
 	}
 

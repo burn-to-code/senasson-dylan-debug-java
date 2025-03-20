@@ -28,7 +28,7 @@ public class ReadSymptomDataFromFile implements SymptomReader {
 	
 	/**
 	 * Utilize one try-with-ressources for open and close the file automatically
-	 * 
+	 *
 	 * @return Return a list of strings from each line of the file.txt, no accents and no uppercase.
 	 */
 	@Override
