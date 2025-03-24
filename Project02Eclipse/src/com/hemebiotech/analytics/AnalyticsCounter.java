@@ -43,6 +43,9 @@ public class AnalyticsCounter {
 	 * @return A Map with symptoms and their occurrences, or an empty list if getSymptoms returns an empty list.
 	 */
 	public Map<String, Integer> countSymptoms(List<String> symptoms) {
+		if (symptoms == null || symptoms.isEmpty()) {
+			return new HashMap<>();
+		}
 		Map<String, Integer> symptomsCount = new HashMap<>();
 		
 		for (String symptom : symptoms) {
